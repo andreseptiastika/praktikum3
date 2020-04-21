@@ -20,4 +20,8 @@ Route::resource('apotek','SupplierController');
 
 Auth::routes();
 
-Route::get('/home', 'SupplierController@index')->name('home');
+Route::get('/supplier', 'SupplierController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/klien', 'KlienController@index')->name('home');
