@@ -30,7 +30,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('klien', function($user){
             return count(array_intersect(["klien"], json_decode($user->roles)));
         });
-
-        //
     }
 }
