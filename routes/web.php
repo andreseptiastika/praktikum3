@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('apotek','ObatController');
+Route::resource('apotek','SupplierController');
+
+Auth::routes();
+
+Route::get('/home', 'SupplierController@index')->name('home');

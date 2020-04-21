@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Obat;
+use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
-class ObatController extends Controller
+class SupplierController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function($request, $next){
+            if(Gate::allows('admin')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup akses');
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +23,9 @@ class ObatController extends Controller
      */
     public function index()
     {
-        $title='Obat';
-        $obat=Obat::paginate(3);
-        return view('admin.dashboard',compact('title','obat'));
+        $title='supplier';
+        $supplier=Supplier::paginate(3);
+        return view('admin.dashboard',compact('title','supplier'));
     }
 
     /**
@@ -26,8 +35,8 @@ class ObatController extends Controller
      */
     public function create()
     {
-        $title='Input Obat';
-        return view('admin.inputobat',compact('title'));
+        $title='Input supplier';
+        return view('admin.inputsupplier',compact('title'));
     }
 
     /**
@@ -44,13 +53,13 @@ class ObatController extends Controller
             'numeric' =>'Kolom :attribute harus Angka',
         ];
         $validasi = $request->validate([ 
-            'nama_obat'=>'required',
-            'jenis_obat'=>'required',
-            'harga'=>'required',
-            'stock'=>'required'
+            'namaSupplier'=>'required',
+            'alamat'=>'required',
+            'noTelp'=>'numeric',
+            
         ],$messages);
 
-        Obat::create($validasi);
+        Supplier::create($validasi);
         return redirect('apotek')->with('succes','data berhasil di update');
     }
 
@@ -73,9 +82,9 @@ class ObatController extends Controller
      */
     public function edit($id)
     {
-        $title='Input Oabt';
-        $obat=Obat::find($id);
-        return view('admin.inputobat',compact('title','obat'));
+        $title='Input supplier';
+        $supplier=Supplier::find($id);
+        return view('admin.inputsupplier',compact('title','supplier'));
     }
 
     /**
@@ -93,13 +102,13 @@ class ObatController extends Controller
             'numeric' =>'Kolom :attribute harus Angka',
         ];
         $validasi = $request->validate([ 
-            'nama_obat'=>'required',
-            'jenis_obat'=>'required',
-            'harga'=>'required',
-            'stock'=>'required'
+            'namaSupplier'=>'required',
+            'alamat'=>'required',
+            'noTelp'=>'required',
+            
         ],$messages);
 
-        Obat::whereid_obat($id)->update($validasi);
+        Supplier::whereId_Supplier($id)->update($validasi);
         return redirect('apotek')->with('succes','data berhasil di update');
     }
 
@@ -111,7 +120,7 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        Obat::whereid_obat($id)->delete();
+        Supplier::whereId_Supplier($id)->delete();
         return redirect('apotek')->with('succes','data berhasil di update'); 
     }
 }

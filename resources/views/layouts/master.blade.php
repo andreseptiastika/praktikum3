@@ -53,11 +53,8 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
+         
+                         
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
               <li>
@@ -82,11 +79,9 @@
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
+          
           <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
+            
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
@@ -103,10 +98,10 @@
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
+          
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+             
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
@@ -141,40 +136,16 @@
               <img src="/adminlte/img/hhh.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Anshori Iqbal</span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                                 </a>
 
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                   </form>
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
